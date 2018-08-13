@@ -1,6 +1,6 @@
 #include "MurmurHash3.h"
 #include "BloomFilter.h"
-
+#include <array>
 
 //Bloom filter constructor
 BloomFilter::BloomFilter(uint64_t size, uint8_t numHashes)
@@ -34,8 +34,9 @@ void BloomFilter::add(const uint8_t *data, std::size_t len) {
 
 
 //Returns true or false based on a probabilistic assesment of the array
-bool BloomFilter::possiblyContains(const uint8_t *data, std::size_t   len) const {
-    auto hashValues = myhash(data, len);
+bool BloomFilter::find(const uint8_t *data, std::size_t len) 
+{
+    auto hashValues = hash(data, len);
     for (int n = 0; n < m_numHashes; n++)
     {
         if (!m_bits[nthHash(n, hashValues[0], hashValues[1], m_bits.size())])

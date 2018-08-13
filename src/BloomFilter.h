@@ -1,5 +1,6 @@
 #ifndef _BLOOMFILTER_H_
 #define _BLOOMFILTER_H_
+#endif
 
 #include <vector>
 
